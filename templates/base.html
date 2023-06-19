@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://bootswatch.com/4/united/bootstrap.min.css">
+    <title>auth exercise</title>
+</head>
+<body>
+    <nav>
+        {% if 'user_id' in session %}
+        <a href="/logout">logout</a>
+        {% else %}
+        <a href="/login">login</a>
+        <a href="/register">register</a>
+        {% endif %}
+    </nav>
+
+    <div>
+        {% for msg in get_flashed_messages() %}
+        <small>{{msg}}</small>
+        {% endfor %}
+    </div>
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

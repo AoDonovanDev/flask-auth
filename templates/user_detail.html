@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>HERE IS THE SECRET PAGE</h1>
+<h3>{{user.username}}</h3>
+<h3>{{user.first_name}}</h3>
+<h3>{{user.last_name}}</h3>
+<h3>{{user.email}}</h3>
+<h4>here's some of the feedback we've gotten from {{user.username}}</h4>
+{% for feedback in user.feedback_submissions: %}
+    <div class="card">
+        <p><b>{{feedback.title}}</b></p>
+        <p>{{feedback.content}}</p>
+    </div>
+    <form action="/feedback/{{feedback.id}}/update", method="post"><button class="btn btn-secondary">update</button></form>
+    <form action="/feedback/{{feedback.id}}/delete", method="post"><button class="btn btn-secondary">delete</button></form>
+{% endfor %}
+
+<a href="/users/{{user.username}}/feedback/add" class="btn btn-primary">give us some feedback</a>
+<form action="/users/{{user.username}}/delete" method="post"> <button class="btn btn-primary"> delete user</button></form>
+{% endblock %}
